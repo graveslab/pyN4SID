@@ -39,8 +39,8 @@ def blockTranspose(M,blockHeight,blockWidth):
     Switches block indices without transposing the blocks
     """
     r,c = M.shape
-    Nr = r / blockHeight
-    Nc = c / blockWidth
+    Nr = int(r / blockHeight)
+    Nc = int(c / blockWidth)
     Mblock = np.zeros((Nr,Nc,blockHeight,blockWidth))
     for i in range(Nr):
         for j in range(Nc):
@@ -65,12 +65,12 @@ def blockHankel(Hleft,Hbot=None,blockHeight=1):
     
     blockWidth = Hleft.shape[1]
     if Hbot is None:
-        Nr = len(Hleft) / blockHeight
+        Nr = int(len(Hleft) / blockHeight)
         Nc = Nr
     else:
         blockHeight = len(Hbot)
-        Nr = len(Hleft) / blockHeight
-        Nc = Hbot.shape[1] / blockWidth
+        Nr = int(len(Hleft) / blockHeight)
+        Nc = int(Hbot.shape[1] / blockWidth)
         
     LeftBlock = np.zeros((Nr,blockHeight,blockWidth))
     
